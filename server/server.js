@@ -25,7 +25,7 @@ app.use('/api/items', itemRoutes);
 
 // Connect to MongoDB
 //mongoose.connect(process.env.MONGO_URI)
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGODB_URI)
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error", err));
 
