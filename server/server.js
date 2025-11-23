@@ -9,7 +9,7 @@ const itemRoutes = require('./routes/itemRoutes');
 
 const app = express();
 // const PORT = process.env.PORT || 5000;
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use('/api/items', itemRoutes);
 
 // Connect to MongoDB
 //mongoose.connect(process.env.MONGO_URI)
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error", err));
 
