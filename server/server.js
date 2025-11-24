@@ -36,14 +36,6 @@ app.use(cors({
 // Reference API Routes
 app.use('/api/items', itemRoutes);
 
-/*
-// Connect to MongoDB
-//mongoose.connect(process.env.MONGO_URI)
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB connection error", err));
-*/
-
 // Test route
 app.get('/api/test', (req, res) => {
     res.json({ message: 'Backend is talking :)' });
@@ -55,5 +47,5 @@ app.get('/api/test', (req, res) => {
 connectDB();
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on PORT:${PORT}`);
 });

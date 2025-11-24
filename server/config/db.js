@@ -1,3 +1,5 @@
+// Exports to server.js the function that connects to the database
+
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
