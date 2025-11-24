@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route } from 'react-router';
 import Dashboard from './components/Dashboard';
 import LoginOrRegister from './components/LoginOrRegister';
+import { API_URL } from "./config";
 
 function App() {
 
@@ -10,7 +11,7 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/test')
+    fetch(`${API_URL}/api/test`)
       .then(res => res.json())
       .then(data => setMessage(data.message))
       .catch(err => console.error(err));
