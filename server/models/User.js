@@ -24,22 +24,16 @@ const userSchema = new mongoose.Schema({
 });
 
 // Middleware hashes password before saving
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
   
-  try {
-    if (!this.isModified('password')) return next(); // Only hash if password is new or updated
-    
+    if (!this.isModified('password')) return; // Only hash if password is new or updated
+
     const saltRounds = 10; // Strength of hashing
-    const hashed = await bcrypt.hash(this.password, saltRounds);
-    this.password = hashed;
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  });
 
 // Method to compare plain text password with hashed password
-userSchema.methods.comparePassword = async function (candidatePasswod) {
+userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
