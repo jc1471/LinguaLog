@@ -25,9 +25,10 @@ const userSchema = new mongoose.Schema({
 
 // Middleware hashes password before saving
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next(); // Only hash if password is new or updated
-
+  
   try {
+    if (!this.isModified('password')) return next(); // Only hash if password is new or updated
+    
     const saltRounds = 10; // Strength of hashing
     const hashed = await bcrypt.hash(this.password, saltRounds);
     this.password = hashed;
