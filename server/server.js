@@ -38,7 +38,7 @@ app.use(cors({
 app.use('/api/items', itemRoutes);
 
 // Reference authentication routes
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // Test route
 app.get('/api/test', (req, res) => {
