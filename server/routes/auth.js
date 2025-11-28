@@ -54,11 +54,11 @@ router.post('/register', async (req, res) => {
 // 4. Return user info + token
 
 router.post('/login', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
         // 1. Find user by email
-        const user = User.findOne({ email });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
